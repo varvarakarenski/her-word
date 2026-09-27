@@ -15,6 +15,8 @@ const tabs = document.querySelectorAll<HTMLButtonElement>(".auth-tab");
 const form = document.querySelector<HTMLFormElement>(".auth-form");
 const submitBtn = form?.querySelector<HTMLButtonElement>(".auth-submit");
 const passwordInput = form?.querySelector<HTMLInputElement>("input[name='password']");
+const confirmLabel = form?.querySelector<HTMLLabelElement>(".auth-confirm");
+const confirmInput = confirmLabel?.querySelector<HTMLInputElement>("input");
 const errorEl = document.querySelector<HTMLParagraphElement>(".auth-error");
 const googleBtn = document.querySelector<HTMLButtonElement>(".auth-google-btn");
 const switchCopies = document.querySelectorAll<HTMLElement>(".auth-switch-copy");
@@ -26,6 +28,12 @@ function setMode(next: Mode): void {
   tabs.forEach((tab) => tab.classList.toggle("active", tab.dataset.mode === mode));
   if (submitBtn) submitBtn.textContent = mode === "login" ? "Log In" : "Sign Up";
   if (passwordInput) passwordInput.autocomplete = mode === "login" ? "current-password" : "new-password";
+  // Disabled inputs are skipped by required/minlength checks, so login mode ignores the field.
+  if (confirmLabel) confirmLabel.hidden = mode === "login";
+  if (confirmInput) {
+    confirmInput.disabled = mode === "login";
+    confirmInput.required = mode === "signup";
+  }
   switchCopies.forEach((copy) => {
     copy.hidden = copy.dataset.mode !== mode;
   });
@@ -33,8 +41,12 @@ function setMode(next: Mode): void {
 }
 
 function showError(error: unknown): void {
+  showMessage(friendlyMessage(error));
+}
+
+function showMessage(message: string): void {
   if (!errorEl) return;
-  errorEl.textContent = friendlyMessage(error);
+  errorEl.textContent = message;
   errorEl.hidden = false;
 }
 
@@ -74,6 +86,11 @@ form?.addEventListener("submit", async (event) => {
   const email = String(data.get("email") ?? "").trim();
   const password = String(data.get("password") ?? "");
   if (!email || !password) return;
+
+  if (mode === "signup" && password !== String(data.get("confirmPassword") ?? "")) {
+    showMessage("Passwords don't match.");
+    return;
+  }
 
   submitBtn?.setAttribute("disabled", "true");
   try {

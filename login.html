@@ -41,6 +41,7 @@
                 <form class="auth-form">
                     <label>Email <input name="email" type="email" required autocomplete="email"></label>
                     <label>Password <input name="password" type="password" required autocomplete="current-password" minlength="6"></label>
+                    <label class="auth-confirm" hidden>Repeat Password <input name="confirmPassword" type="password" autocomplete="new-password" minlength="6" disabled></label>
                     <p class="auth-error" hidden></p>
                     <button type="submit" class="auth-submit">Log In</button>
                 </form>
