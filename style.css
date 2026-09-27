@@ -496,7 +496,8 @@ h1 {
 }
 
 .listing-rating {
-    flex: 0 0 auto;
+    /* Fixed width so "Unrated" and "★★★★★ 4.5 (12 reviews)" take the same space and tags line up across cards. */
+    flex: 0 0 13rem;
     margin-left: auto;
     white-space: nowrap;
     font-size: 0.85rem;
