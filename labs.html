@@ -22,7 +22,31 @@
 
         <div class="search-bar">
             <input type="search" class="search-input" placeholder="Search labs by name, description, or tag...">
+            <button type="button" class="filter-toggle" aria-expanded="false">Filters</button>
             <button type="button" class="add-listing-toggle">+ Add a lab</button>
+        </div>
+
+        <div class="filter-panel" hidden>
+            <label>Region
+                <select name="region">
+                    <option value="">All regions</option>
+                    <option>Northeast</option>
+                    <option>Midwest</option>
+                    <option>South</option>
+                    <option>West</option>
+                    <option>Remote</option>
+                    <option>Other</option>
+                </select>
+            </label>
+            <label>Sort by
+                <select name="sort">
+                    <option value="">Default</option>
+                    <option value="rating-desc">Highest rated</option>
+                    <option value="rating-asc">Lowest rated</option>
+                    <option value="reviews">Most reviewed</option>
+                    <option value="name">Name (A–Z)</option>
+                </select>
+            </label>
         </div>
 
         <div class="perfect-labs">

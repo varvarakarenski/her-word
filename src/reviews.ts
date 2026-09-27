@@ -45,3 +45,18 @@ export function renderReviewList(container: HTMLElement, reviews: Review[]): voi
     container.appendChild(item);
   }
 }
+
+export type RatingStats = { averageRating: number; reviewCount: number };
+
+// One Firestore read for every listing's stats, so sorting doesn't fetch reviews per card.
+export async function allRatingStats(): Promise<Map<string, RatingStats>> {
+  const persisted = await loadAdditions<Review>("reviews");
+  const stats = new Map<string, RatingStats>();
+  for (const review of [...mockReviews, ...persisted]) {
+    const current = stats.get(review.listingId) ?? { averageRating: 0, reviewCount: 0 };
+    const reviewCount = current.reviewCount + 1;
+    const averageRating = current.averageRating + (review.rating - current.averageRating) / reviewCount;
+    stats.set(review.listingId, { averageRating, reviewCount });
+  }
+  return stats;
+}

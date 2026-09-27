@@ -57,9 +57,13 @@ function renderCard<T extends Listing>(
   const rating = el("p", "listing-rating", "");
   card.appendChild(rating);
   ratingStats(item.id).then(({ averageRating, reviewCount }) => {
+    if (!reviewCount) {
+      rating.textContent = "Unrated";
+      return;
+    }
     const rounded = Math.round(averageRating);
     const stars = "★".repeat(rounded) + "☆".repeat(5 - rounded);
-    rating.textContent = `${stars} ${averageRating.toFixed(1)} (${reviewCount} reviews)`;
+    rating.textContent = `${stars} ${averageRating.toFixed(1)} (${reviewCount} ${reviewCount === 1 ? "review" : "reviews"})`;
   });
 
   return card;

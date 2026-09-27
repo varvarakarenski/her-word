@@ -1,6 +1,7 @@
 import { mockCompanies } from "./data/companies";
 import { renderList } from "./renderList";
 import { filterListings } from "./search";
+import { initListControls } from "./listControls";
 import { appendAddition, loadAdditions } from "./storage";
 import { bindOverlayDismiss } from "./overlay";
 import { initTagPicker, uniqueTags } from "./tagPicker";
@@ -27,9 +28,10 @@ onAuthStateChanged(auth, (user) => {
 if (listContainer) {
   let companies: Company[] = [...mockCompanies];
   let query = "";
+  const controls = initListControls(render);
 
   function render(): void {
-    renderList(listContainer!, filterListings(companies, query), "company", (company) => company.industry);
+    renderList(listContainer!, controls.apply(filterListings(companies, query)), "company", (company) => company.industry);
   }
 
   loadAdditions<Company>("companies").then((additions) => {

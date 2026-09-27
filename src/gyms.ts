@@ -1,6 +1,7 @@
 import { mockGyms } from "./data/gyms";
 import { renderList } from "./renderList";
 import { filterListings } from "./search";
+import { initListControls } from "./listControls";
 import { appendAddition, loadAdditions } from "./storage";
 import { bindOverlayDismiss } from "./overlay";
 import { initTagPicker, uniqueTags } from "./tagPicker";
@@ -27,9 +28,10 @@ onAuthStateChanged(auth, (user) => {
 if (listContainer) {
   let gyms: Gym[] = [...mockGyms];
   let query = "";
+  const controls = initListControls(render);
 
   function render(): void {
-    renderList(listContainer!, filterListings(gyms, query), "gym", (gym) => gym.gymType);
+    renderList(listContainer!, controls.apply(filterListings(gyms, query)), "gym", (gym) => gym.gymType);
   }
 
   loadAdditions<Gym>("gyms").then((additions) => {

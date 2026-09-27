@@ -2,6 +2,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { mockLabs } from "./data/labs";
 import { renderList } from "./renderList";
 import { filterListings } from "./search";
+import { initListControls } from "./listControls";
 import { appendAddition, loadAdditions } from "./storage";
 import { bindOverlayDismiss } from "./overlay";
 import { initTagPicker, uniqueTags } from "./tagPicker";
@@ -29,9 +30,10 @@ onAuthStateChanged(auth, (user) => {
 if (listContainer) {
   let labs: Lab[] = [...mockLabs];
   let query = "";
+  const controls = initListControls(render);
 
   function render(): void {
-    renderList(listContainer!, filterListings(labs, query), "lab", (lab) => `${lab.department}, ${lab.institution}`);
+    renderList(listContainer!, controls.apply(filterListings(labs, query)), "lab", (lab) => `${lab.department}, ${lab.institution}`);
   }
 
   loadAdditions<Lab>("labs").then((additions) => {

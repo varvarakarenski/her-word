@@ -1,6 +1,7 @@
 import { mockTeams } from "./data/teams";
 import { renderList } from "./renderList";
 import { filterListings } from "./search";
+import { initListControls } from "./listControls";
 import { appendAddition, loadAdditions } from "./storage";
 import { bindOverlayDismiss } from "./overlay";
 import { initTagPicker, uniqueTags } from "./tagPicker";
@@ -27,9 +28,10 @@ onAuthStateChanged(auth, (user) => {
 if (listContainer) {
   let teams: Team[] = [...mockTeams];
   let query = "";
+  const controls = initListControls(render);
 
   function render(): void {
-    renderList(listContainer!, filterListings(teams, query), "team", (team) => (team.kind === "club" ? "Club" : "Team"));
+    renderList(listContainer!, controls.apply(filterListings(teams, query)), "team", (team) => (team.kind === "club" ? "Club" : "Team"));
   }
 
   loadAdditions<Team>("teams").then((additions) => {

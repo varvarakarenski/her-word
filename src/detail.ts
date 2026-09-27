@@ -119,8 +119,8 @@ async function main(): Promise<void> {
   async function renderRating(): Promise<void> {
     const { averageRating, reviewCount } = await ratingStats(listing!.id);
     const rounded = Math.round(averageRating);
-    if (summaryNumberEl) summaryNumberEl.textContent = averageRating.toFixed(1);
-    if (summaryStarsEl) summaryStarsEl.textContent = "★".repeat(rounded) + "☆".repeat(5 - rounded);
+    if (summaryNumberEl) summaryNumberEl.textContent = reviewCount ? averageRating.toFixed(1) : "Unrated";
+    if (summaryStarsEl) summaryStarsEl.textContent = reviewCount ? "★".repeat(rounded) + "☆".repeat(5 - rounded) : "";
     if (summaryCountEl) {
       summaryCountEl.textContent = reviewCount === 1 ? "1 review" : `${reviewCount} reviews`;
     }
