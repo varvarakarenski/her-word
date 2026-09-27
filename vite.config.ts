@@ -4,7 +4,7 @@ import { resolve } from "node:path";
 const root = import.meta.dirname;
 
 export default defineConfig(({ command }) => ({
-  base: command === "build" ? "/perfect-day/" : "/",
+  base: command === "build" ? "/her-word/" : "/",
   build: {
     rollupOptions: {
       input: {

@@ -1,5 +1,5 @@
 {
-  "name": "perfect-day",
+  "name": "her-word",
   "version": "1.0.0",
   "description": "Rate-my-professor style reviews for women in STEAM companies, labs, and teams",
   "type": "module",
@@ -10,20 +10,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/varvarakarenski/perfect-day.git"
+    "url": "git+https://github.com/varvarakarenski/her-word.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/varvarakarenski/perfect-day/issues"
+    "url": "https://github.com/varvarakarenski/her-word/issues"
   },
-  "homepage": "https://github.com/varvarakarenski/perfect-day#readme",
+  "homepage": "https://github.com/varvarakarenski/her-word#readme",
   "devDependencies": {
     "@types/node": "^26.4.0",
     "typescript": "^7.0.2",
     "vite": "^8.2.2"
   },
   "dependencies": {
-    "firebase": "^12.18.0"
+    "firebase": "^12.19.0"
   }
 }

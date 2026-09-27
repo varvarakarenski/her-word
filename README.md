@@ -1,8 +1,8 @@
-# PerfectDay
+# HerWord
 
 > Imagine if Elle Woods could see metrics about women at Harvard Law before she applied.
 
-PerfectDay is a Rate My Professor inspired  platform for women in STEM - real reviews of companies, research labs, and clubs/teams, written by the women who've actually been in the room. Instead of finding out after you sign the offer letter whether a lab is actually a place you'll thrive, you find out before.
+HerWord is a Rate My Professor inspired  platform for women in STEM - real reviews of companies, research labs, and clubs/teams, written by the women who've actually been in the room. Instead of finding out after you sign the offer letter whether a lab is actually a place you'll thrive, you find out before.
 
 Built for HackClub Sunbeam.
 
