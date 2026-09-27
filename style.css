@@ -1238,3 +1238,45 @@ h1 {
 .haripriya {
     background-color: #D29B83;
 }
+.privacy-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1rem 4rem;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.7;
+}
+
+.privacy-page h1 {
+    color: var(--terracotta-dark);
+    margin-bottom: 0.25rem;
+}
+
+.privacy-page h2 {
+    font-weight: 500;
+    font-size: 1.15rem;
+    margin: 2rem 0 0.5rem;
+    padding-left: 0.75rem;
+    border-left: 3px solid var(--terracotta);
+}
+
+.privacy-page h2:nth-of-type(3n+2) { border-left-color: var(--mint); }
+.privacy-page h2:nth-of-type(3n+3) { border-left-color: var(--sky); }
+
+.privacy-page strong { font-weight: 500; }
+
+.privacy-page a { color: var(--terracotta-dark); }
+
+.privacy-updated {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 0;
+}
+
+.privacy-summary {
+    background: #ffffff;
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+}

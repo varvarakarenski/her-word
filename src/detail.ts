@@ -1,14 +1,15 @@
 import { mockCompanies } from "./data/companies";
 import { mockLabs } from "./data/labs";
 import { mockTeams } from "./data/teams";
+import { mockGyms } from "./data/gyms";
 import { loadAdditions } from "./storage";
 import { ratingStats, reviewsFor, renderReviewList } from "./reviews";
 import { openReviewPanel } from "./reviewPanel";
 import { logoFor } from "./logo";
 import "./menubar";
-import type { Company, Lab, Team, Listing } from "./types";
+import type { Company, Lab, Team, Gym, Listing } from "./types";
 
-type DetailType = "company" | "lab" | "team";
+type DetailType = "company" | "lab" | "team" | "gym";
 
 function subtitleFor(type: DetailType, listing: Listing): string {
   if (type === "company") return (listing as Company).industry;
@@ -16,6 +17,7 @@ function subtitleFor(type: DetailType, listing: Listing): string {
     const lab = listing as Lab;
     return `${lab.department}, ${lab.institution}`;
   }
+  if (type === "gym") return (listing as Gym).gymType;
   return (listing as Team).affiliation;
 }
 
@@ -26,6 +28,9 @@ async function findListing(type: DetailType, id: string): Promise<Listing | unde
   if (type === "lab") {
     return [...mockLabs, ...(await loadAdditions<Lab>("labs"))].find((item) => item.id === id);
   }
+  if (type === "gym") {
+    return [...mockGyms, ...(await loadAdditions<Gym>("gyms"))].find((item) => item.id === id);
+  }
   return [...mockTeams, ...(await loadAdditions<Team>("teams"))].find((item) => item.id === id);
 }
 
@@ -33,7 +38,7 @@ const params = new URLSearchParams(location.search);
 const typeParam = params.get("type");
 const id = params.get("id");
 const type: DetailType | null =
-  typeParam === "company" || typeParam === "lab" || typeParam === "team" ? typeParam : null;
+  typeParam === "company" || typeParam === "lab" || typeParam === "team" || typeParam === "gym" ? typeParam : null;
 
 const contentEl = document.querySelector<HTMLElement>(".detail-content");
 const notFoundEl = document.querySelector<HTMLElement>(".detail-not-found");
@@ -56,12 +61,14 @@ const defaultActivities: Record<DetailType, string> = {
   company: "This company hasn't shared details about day-to-day activities yet — reviews below are the best window into what it's really like to work here.",
   lab: "This lab hasn't shared details about day-to-day activities yet — reviews below are the best window into what it's really like to work here.",
   team: "This group hasn't shared details about its activities yet — reviews below are the best window into what it's really like to be a member.",
+  gym: "This gym hasn't shared details about its classes and facilities yet — reviews below are the best window into what it's really like to work out here.",
 };
 
 const activitiesHeading: Record<DetailType, string> = {
   company: "About this company",
   lab: "About this lab",
   team: "About this group",
+  gym: "About this gym",
 };
 
 backLink?.addEventListener("click", (event) => {

@@ -2,6 +2,7 @@ import type { Listing } from "./types";
 import companyIconSvg from "../company.svg?raw";
 import labIconSvg from "../lab.svg?raw";
 import teamIconSvg from "../club.svg?raw";
+import gymIconSvg from "../gym.svg?raw";
 
 function hashHue(input: string): number {
   let hash = 0;
@@ -20,6 +21,7 @@ const ICON_BODIES: Record<string, string> = {
   company: svgBody(companyIconSvg),
   lab: svgBody(labIconSvg),
   team: svgBody(teamIconSvg),
+  gym: svgBody(gymIconSvg),
 };
 
 export function logoFor(item: Listing, accentColor?: string, category?: string): string {

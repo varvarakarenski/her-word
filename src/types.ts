@@ -22,6 +22,10 @@ export interface Team extends Listing {
   affiliation: string;
 }
 
+export interface Gym extends Listing {
+  gymType: string;
+}
+
 export interface Review {
   id: string;
   listingId: string;
