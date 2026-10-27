@@ -117,14 +117,24 @@ body {
 }
 
 .menubar-login-link {
-    color: #1f2937;
+    display: inline-flex;
+    align-items: center;
+    height: 36px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background-color: #d29b83;
+    color: white;
     text-decoration: none;
-    padding: 15px;
     font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    white-space: nowrap;
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
 .menubar-login-link:hover {
-    color: #d1495b;
+    background-color: #a5745f;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .menubar-account {
