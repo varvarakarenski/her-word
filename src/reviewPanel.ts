@@ -1,7 +1,7 @@
 import { onAuthStateChanged } from "firebase/auth";
 import type { Listing, Review } from "./types";
 import { appendAddition } from "./storage";
-import { bindOverlayDismiss } from "./overlay";
+import { bindOverlayDismiss, requireLogin } from "./overlay";
 import { bindStarRating } from "./starRating";
 import { auth } from "./firebase";
 
@@ -49,6 +49,7 @@ form?.addEventListener("submit", async (event) => {
 
 export function openReviewPanel(listing: Listing, onSubmitted: (review: Review) => void): void {
   if (!overlay || !form) return;
+  if (!requireLogin()) return;
   currentListing = listing;
   currentOnSubmitted = onSubmitted;
   overlay.hidden = false;

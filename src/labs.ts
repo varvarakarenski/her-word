@@ -4,7 +4,7 @@ import { renderList } from "./renderList";
 import { filterListings } from "./search";
 import { initListControls } from "./listControls";
 import { appendAddition, loadAdditions } from "./storage";
-import { bindOverlayDismiss } from "./overlay";
+import { bindOverlayDismiss, requireLogin } from "./overlay";
 import { initTagPicker, uniqueTags } from "./tagPicker";
 import "./menubar";
 import type { Lab } from "./types";
@@ -47,6 +47,7 @@ if (listContainer) {
   });
 
   addToggle?.addEventListener("click", () => {
+    if (!requireLogin()) return;
     if (addOverlay) addOverlay.hidden = false;
   });
 

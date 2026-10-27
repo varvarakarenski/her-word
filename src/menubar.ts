@@ -10,7 +10,7 @@ function renderLoggedOut(container: HTMLElement): void {
   const link = document.createElement("a");
   link.href = "login.html";
   link.className = "menubar-login-link";
-  link.textContent = "Log In";
+  link.textContent = "Log in or sign up";
   container.appendChild(link);
 }
 

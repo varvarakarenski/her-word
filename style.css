@@ -275,6 +275,21 @@ h1 {
     gap: 1rem;
 }
 
+.info {
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    width: auto;
+    font-family: Lexend;
+    color: #D29B83;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .footer {
     position: relative;
     background-color: rgba(255, 255, 255, 0.9);
