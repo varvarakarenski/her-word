@@ -116,7 +116,7 @@ body {
     align-items: center;
 }
 
-.menubar-login-link {
+.menubar .menubar-login-link {
     display: inline-flex;
     align-items: center;
     height: 36px;
@@ -131,7 +131,8 @@ body {
     transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
-.menubar-login-link:hover {
+.menubar .menubar-login-link:hover {
+    color: white;
     background-color: #a5745f;
     transform: translateY(-1px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
@@ -283,21 +284,6 @@ h1 {
     justify-content: center;
     align-items: center;
     gap: 1rem;
-}
-
-.info {
-    position: relative;
-    overflow: hidden;
-    height: 100vh;
-    width: auto;
-    font-family: Lexend;
-    color: #D29B83;
-    background-color: white;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .footer {
@@ -1353,4 +1339,8 @@ h1 {
     outline: none;
     border-color: var(--terracotta);
     box-shadow: 0 0 0 3px rgba(210, 155, 131, 0.18);
+}
+
+.menubar .menubar-login-link::after {
+    display: none;
 }
